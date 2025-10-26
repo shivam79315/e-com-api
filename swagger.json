@@ -1,0 +1,136 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "description": "API for E-Commerce application",
+        "title": "E-Com API"
+    },
+    "host":"localhost:3200",
+    "securityDefinitions":{
+        "JWT":{
+            "in":"header",
+            "name":"Authorization",
+            "type":"apiKey"
+        }
+    },
+    "paths":{
+        "/api/users/sign-up":{
+            "post":{
+                "summary":"Returns a list of users",
+                "description":"User sign up which expects name, email, password, user type",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"Body",
+                        "description":"User Credentials",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "name":{
+                                    "type": "string"
+                                },
+                                "email":{
+                                    "type": "string"
+                                },
+                                "password":{
+                                    "type": "string"
+                                },
+                                "type":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"User details"
+                    },
+                    "201": {
+                        "description": "User created successfully",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                            "id": { "type": "integer" },
+                            "name": { "type": "string" },
+                            "email": { "type": "string" },
+                            "type": { "type": "string" }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"User not found"
+                    }
+                }
+            }
+        },
+        "/api/users/sign-in":{
+            "post":{
+                "summary":"User Login",
+                "description":"User login expects email, password",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"Body",
+                        "description":"User Credentials",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "email":{
+                                    "type": "string"
+                                },
+                                "password":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"success"
+                    },
+                    "400":{
+                        "description":"User not found"
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "summary": "Returns a list of products",
+                "description": "Fetch all available products",
+                "security": [{ "JWT": {} }],
+                "responses": {
+                    "200": {
+                        "description": "List of products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": { "type": "integer" },
+                                            "name": { "type": "string" },
+                                            "desc": { "type": "string" },
+                                            "price": { "type": "number" },
+                                            "imageUrl": { "type": "string" },
+                                            "category": { "type": "string" },
+                                            "sizes": { 
+                                                "type": "array",
+                                                "items": { "type": "string" }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": { "description": "Error fetching products" }
+                }
+            }
+        }
+
+    }
+}
