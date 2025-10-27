@@ -14,6 +14,17 @@ import apiDocs from './swagger.json' with {type:'json'};
 // 2. Create Server
 const server = express();
 
+// cors 
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://e-com-api-i9yc.onrender.com');
+    res.header('Access-Control-Allow-Headers', '*');
+    res.header('Access-Control-Allow-Methods', '*');
+    if(req.method == "OPTIONS") {
+        return res.sendStatus(200);
+    }
+    next();
+})
+
 server.use(cookieParser());
 server.use(express.json());
 

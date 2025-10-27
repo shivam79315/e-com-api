@@ -13,9 +13,14 @@
             "type":"apiKey"
         }
     },
+    "tags": [
+        { "name": "Users", "description": "Operations about users" },
+        { "name": "Products", "description": "Operations about products" }
+    ],
     "paths":{
         "/api/users/sign-up":{
             "post":{
+                "tags": ["Users"],
                 "summary":"Returns a list of users",
                 "description":"User sign up which expects name, email, password, user type",
                 "parameters":[
@@ -67,6 +72,7 @@
         "/api/users/sign-in":{
             "post":{
                 "summary":"User Login",
+                "tags": ["Users"],
                 "description":"User login expects email, password",
                 "parameters":[
                     {
@@ -98,6 +104,7 @@
         },
         "/api/products": {
             "get": {
+                "tags": ["Products"],
                 "summary": "Returns a list of products",
                 "description": "Fetch all available products",
                 "security": [{ "JWT": {} }],
