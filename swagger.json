@@ -1,143 +1,85 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "description": "API for E-Commerce application",
-        "title": "E-Com API"
+    "openapi": "3.0.0",
+    "info":{
+        "version":"1.0.0",
+        "description":"API for E-Commerce application",
+        "title":"E-commerce API"
     },
-    "host":"localhost:3200",
-    "securityDefinitions":{
-        "JWT":{
-            "in":"header",
-            "name":"Authorization",
-            "type":"apiKey"
+    "servers":[
+        {
+            "url":"translation-server-awbp.onrender.com"
+        }
+    ],
+
+    "components":
+    {
+        "securitySchemes":
+        {
+            "JWT":
+            {
+                "in":"header",
+                "name":"Authorization",
+                "type": "apiKey"
+            }
         }
     },
-    "tags": [
-        { "name": "Users", "description": "Operations about users" },
-        { "name": "Products", "description": "Operations about products" }
-    ],
-    "paths":{
-        "/api/users/sign-up":{
-            "post":{
-                "tags": ["Users"],
-                "summary":"Returns a list of users",
-                "description":"User sign up which expects name, email, password, user type",
-                "parameters":[
-                    {
-                        "in":"body",
-                        "name":"Body",
-                        "description":"User Credentials",
-                        "schema":{
-                            "type":"object",
-                            "properties":{
-                                "name":{
-                                    "type": "string"
-                                },
-                                "email":{
-                                    "type": "string"
-                                },
-                                "password":{
-                                    "type": "string"
-                                },
-                                "type":{
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"User details"
-                    },
-                    "201": {
-                        "description": "User created successfully",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                            "id": { "type": "integer" },
-                            "name": { "type": "string" },
-                            "email": { "type": "string" },
-                            "type": { "type": "string" }
-                            }
-                        }
-                    },
-                    "400":{
-                        "description":"User not found"
-                    }
-                }
-            }
-        },
-        "/api/users/sign-in":{
-            "post":{
-                "summary":"User Login",
-                "tags": ["Users"],
-                "description":"User login expects email, password",
-                "parameters":[
-                    {
-                        "in":"body",
-                        "name":"Body",
-                        "description":"User Credentials",
-                        "schema":{
-                            "type":"object",
-                            "properties":{
-                                "email":{
-                                    "type": "string"
-                                },
-                                "password":{
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses":{
-                    "200":{
-                        "description":"success"
-                    },
-                    "400":{
-                        "description":"User not found"
-                    }
-                }
-            }
-        },
+
+    "paths":
+    {
         "/api/products": {
-            "get": {
+            "get":
+            {
                 "tags": ["Products"],
-                "summary": "Returns a list of products",
-                "description": "Fetch all available products",
-                "security": [{ "JWT": {} }],
-                "responses": {
+                "summary":"Get Products",
+                "description":"User will get all products",
+                "security":[{"JWT": {} }],
+                "responses":
+                {
                     "200": {
-                        "description": "List of products",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": { "type": "integer" },
-                                            "name": { "type": "string" },
-                                            "desc": { "type": "string" },
-                                            "price": { "type": "number" },
-                                            "imageUrl": { "type": "string" },
-                                            "category": { "type": "string" },
-                                            "sizes": { 
-                                                "type": "array",
-                                                "items": { "type": "string" }
-                                            }
-                                        }
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+
+        "/api/users/signin": 
+        {
+            "post":
+            {
+                "tags": ["Users"],
+                "summary":"Login",
+                "description":"User login to get token",
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
                                     }
                                 }
                             }
                         }
+                    }
+                },
+                "responses":{
+                    "200": {
+                        "description":"OK"
                     },
-                    "400": { "description": "Error fetching products" }
+                    "400": {
+                        "description": "Incorrect Credentials"
+                    }
                 }
             }
         }
-
     }
 }

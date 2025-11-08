@@ -1,32 +1,28 @@
-import { UserModel } from "../features/user/user.model.js";
+import bAuth from 'express-basic-auth';
+import UserModel from '../features/user/user.model.js';
 
-const basicAuthorizer = (req, res, next) => {
+const basicAuthorizer = (username, password) => {
+  // 1. Get users
+  const users = UserModel.getAll();
+  // 2. Compare email
+  const user = users.find((u) =>
+    bAuth.safeCompare(username, u.email)
+  );
+  if (user) {
+    // 3. Compare password and return
+    return bAuth.safeCompare(
+      password,
+      user.password
+    );
+  } else {
+    // 4. Return error message
+    return false;
+  }
+};
 
-    // 1. check if authorization header is empty.
-    const authHeader = req.headers["authorization"];
+const authorizer = bAuth({
+  authorizer: basicAuthorizer,
+  challenge: true,
+});
 
-    if(!authHeader) {
-        return res.status(401).send("No authorization details found");
-    }
-
-    // 2. extract credentials
-    const base64Credentials = authHeader.replace("Basic ", "");
-
-    // 3. decode credentials.
-    console.log(base64Credentials);
-
-    const decodedCreds = Buffer.from(base64Credentials, 'base64').toString('utf8');
-    console.log("Decoded creds", decodedCreds);
-
-    const creds = decodedCreds.split(':');
-
-    const user = UserModel.getUsers().find((u) => u.email == creds[0] && u.password == creds[1]);
-
-    if(user) {
-        next();
-    } else {
-        res.status(401).send("Unauthorized user.")
-    }
-}
-
-export default basicAuthorizer;
+export default authorizer;

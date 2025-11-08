@@ -5,13 +5,17 @@ import express from 'express';
 import UserController from './user.controller.js';
 
 // 2. Initialize Express router.
-const UserRouter = express.Router();
+const userRouter = express.Router();
+
 const userController = new UserController();
 
-// All the paths to the controller methods.
-// localhost/api/auth 
-UserRouter.post('/sign-up', userController.signUp);
-UserRouter.post('/sign-in', userController.signIn);
-UserRouter.get('/all-users', userController.getUsers);
+// All the paths to controller methods.
 
-export default UserRouter;
+userRouter.post('/signup', (req, res)=>{
+    userController.signUp(req, res)
+});
+userRouter.post('/signin', (req, res)=>{
+    userController.signIn(req, res)
+});
+
+export default userRouter;
