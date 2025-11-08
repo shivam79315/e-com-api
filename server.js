@@ -18,24 +18,6 @@ import {connectToMongoDB} from './src/config/mongodb.js';
 // 2. Create Server
 const server = express();
 
-server.use(
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: '/tmp/',
-    createParentPath: true,
-  })
-);
-
-// CORS policy configuration
-
-var corsOptions = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"]
-};
-
-server.use(cors(corsOptions));
-
 // server.use((req, res, next)=>{
 //   res.header('Access-Control-Allow-Origin','http://localhost:5500');
 //   res.header('Access-Control-Allow-Headers','*');
@@ -48,10 +30,29 @@ server.use(cors(corsOptions));
 // })
 
 server.use(express.json());
+
 // Bearer <token>
 // for all requests related to product, redirect to product routes.
 // localhost:3200/api/products
 
+server.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/',
+    createParentPath: true,
+  })
+);
+
+
+// CORS policy configuration
+
+var corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"]
+};
+
+server.use(cors(corsOptions));
 
 const apiDocs = JSON.parse(fs.readFileSync('./swagger.json', 'utf-8'));
 
@@ -64,7 +65,6 @@ server.use(loggerMiddleware);
 
 server.use(
   '/api/products',
-
   productRouter
 );
 server.use("/api/cartItems", jwtAuth, cartRouter);
