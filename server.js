@@ -5,7 +5,7 @@ import express from 'express';
 import swagger from 'swagger-ui-express';
 import cors from 'cors';
 import fs from 'fs';
-
+import fileUpload from 'express-fileupload';
 
 import productRouter from './src/features/product/product.routes.js';
 import userRouter from './src/features/user/user.routes.js';
@@ -18,8 +18,13 @@ import {connectToMongoDB} from './src/config/mongodb.js';
 // 2. Create Server
 const server = express();
 
-// load all the environment variables in application
-
+server.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/',
+    createParentPath: true,
+  })
+);
 
 // CORS policy configuration
 

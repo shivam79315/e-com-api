@@ -141,3 +141,39 @@
  Mon Sep 11 2023 11:24:20 GMT+0530 (India Standard Time) - /api/products/rate - {"productID":"64f6c882628dcf2b449a0acf","rating":3200}
  Mon Sep 11 2023 11:25:43 GMT+0530 (India Standard Time) - /api/products/rate - {"productID":"64f6c882628dcf2b449a0acf","rating":3.2}
  Mon Sep 11 2023 11:44:30 GMT+0530 (India Standard Time) - /api/products/rate - {"productID":"64f6c882628dcf2b449a0acf","rating":4.5}
+ Sat Nov 08 2025 22:37:23 GMT+0530 (India Standard Time) - /api/users/signup - {"name":"Jane Doe","email":"janedoe@gmail.com","password":"12345678","type":"user"}
+ Sat Nov 08 2025 22:39:45 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 22:40:06 GMT+0530 (India Standard Time) - /api/addProduct - {}
+ Sat Nov 08 2025 22:40:19 GMT+0530 (India Standard Time) - /api/users/all-users - {}
+ Sat Nov 08 2025 22:41:15 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 22:42:17 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 22:42:44 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 22:45:49 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 22:47:04 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:07:00 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:08:22 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:08:53 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:10:00 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:10:20 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:11:06 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:11:17 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:13:08 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:14:34 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:16:33 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:16:49 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:21:36 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:27:34 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:28:07 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:33:52 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:34:01 GMT+0530 (India Standard Time) - /api/products - {}
+ Sat Nov 08 2025 23:58:40 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sat Nov 08 2025 23:58:55 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:00:04 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:02:59 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:04:51 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:05:27 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:05:43 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:07:37 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:08:43 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:09:48 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}
+ Sun Nov 09 2025 00:11:07 GMT+0530 (India Standard Time) - /api/products - {"name":"Product 5","desc":"Description for Product 5","price":"40","category":"category2","sizes":"M,L,XL"}

@@ -18,18 +18,20 @@ export default class ProductController {
 
   async addProduct(req, res) {
     try{
-    const { name, price, sizes } = req.body;
-    const newProduct = new ProductModel(name,null, parseFloat(price),
-    req.file.filename, null, sizes.split(',')
-    );
+      const { name, price, sizes } = req.body;
+      console.log("BOdy ", req.imageUrl);
 
-    const createdProduct = await this.productRepository.add(newProduct);
-    res.status(201).send(createdProduct);
-  }catch(err){
-    console.log(err);
-    return res.status(200).send("Something went wrong");
+      const newProduct = new ProductModel(name,null, parseFloat(price),
+      req.imageUrl, null, sizes.split(',')
+      );
+
+      const createdProduct = await this.productRepository.add(newProduct);
+      res.status(201).send(createdProduct);
+    }catch(err){
+      console.log(err);
+      return res.status(200).send("Something went wrong");
+    }
   }
-}
 
   async rateProduct(req, res, next) {
     try{
