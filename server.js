@@ -97,9 +97,15 @@ server.use((req, res)=>{
 
 
 // 5. Specify port.
-server.listen(3200, ()=>{
-  console.log('Server is running at 3200');
-  connectToMongoDB();
+const startServer = async () => {
+  try {
+    await connectToMongoDB();
+    server.listen(3200, () => {
+      console.log('Server is running at 3200');
+    });
+  } catch (err) {
+    console.error('Failed to connect to MongoDB:', err);
+  }
+};
 
-});
-
+startServer();
