@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
 const jwtAuth = (req, res, next)=>{
     // 1. Read the token.
-    const token = req.headers['authorization'];
+    const token = req.cookies?.token;
+
+    console.log("Token from cookie:", token);
 
     // 2. if no token, return the error.
     if(!token){
@@ -12,7 +14,7 @@ const jwtAuth = (req, res, next)=>{
       
         const payload = jwt.verify(
             token,
-            "AIb6d35fvJM4O9pXqXQNla2jBCH9kuLz"
+            process.env.JWT_SECRET
         );
         req.userID = payload.userID;
         // console.log(payload);

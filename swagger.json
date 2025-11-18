@@ -18,7 +18,7 @@
         { "name": "Products", "description": "Operations about products" }
     ],
     "paths":{
-        "/api/users/sign-up":{
+        "/api/users/signup":{
             "post":{
                 "tags": ["Users"],
                 "summary":"Returns a list of users",
@@ -69,7 +69,7 @@
                 }
             }
         },
-        "/api/users/sign-in":{
+        "/api/users/signin":{
             "post":{
                 "summary":"User Login",
                 "tags": ["Users"],

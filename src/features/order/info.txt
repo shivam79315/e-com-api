@@ -1,0 +1,9 @@
+ Place an order
+ 
+1. Get total amount of user cart, and calculate the total amount
+2. Create a record of order
+3. Reduce products quantity
+4. Clear cart 
+
+5. Deduct payment
+6. Inform about sale to customer, seller etc.

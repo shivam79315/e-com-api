@@ -14,7 +14,14 @@ export default class CartItemsRepository{
             const db = getDB();
             const collection = db.collection(this.collection);
 
-            await collection.insertOne({productID : new ObjectId(productID), userID: new ObjectId(userID), quantity})
+            const id = await this.getNextCartItemID();
+
+            await collection.updateOne({productID : new ObjectId(productID), userID: new ObjectId(userID), quantity},
+            {
+                $setOnInsert: {_id: id},
+                $inc: {quantity: quantity}},
+            {upsert: true}
+            );
         } catch (error) {
             console.log(err);
             throw new ApplicationError("Something went wrong with database", 500);
@@ -41,6 +48,27 @@ export default class CartItemsRepository{
 
             const result = await collection.deleteOne({_id: new ObjectId(cartItemID), userID: new ObjectId(userID)});
             return result.deletedCount>0;
+        } catch (error) {
+            console.log(error);
+            throw new ApplicationError("Something went wrong with database", 500);
+        }
+    }
+
+    async getNextCartItemID() {
+        try {
+            const db = getDB();
+            const collection = db.collection("counters");
+
+            const value = await collection.findOneAndUpdate(
+                { id: "cartItemID" },
+                { $inc: { seq: 1 } },
+                { returnDocument: "after", upsert: true }
+            );
+
+            console.log("Next cart item ID:", value);
+
+            return value.seq;
+
         } catch (error) {
             console.log(error);
             throw new ApplicationError("Something went wrong with database", 500);

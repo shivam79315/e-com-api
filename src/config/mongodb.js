@@ -11,6 +11,7 @@ export const connectToMongoDB = ()=>{
         .then(clientInstance=>{
             client=clientInstance
             console.log("Mongodb is connected");
+            createCounter();
         })
         .catch(err=>{
             console.log(err);
@@ -19,4 +20,13 @@ export const connectToMongoDB = ()=>{
 
 export const getDB = ()=>{
     return client.db();
+}
+
+const createCounter = async ()=>{
+    const db = getDB();
+    const collection = db.collection("counters");
+    const counter = await collection.findOne({id: "productID"});
+    if(!counter){
+        await collection.insertOne({id: "productID", seq: 0});
+    }
 }
