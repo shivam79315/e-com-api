@@ -1,13 +1,25 @@
 
 import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // const url = "mongodb://localhost:27017/ecomdb";
-// If the above url gives error (error may be caused due to IPv4/IPv6 configuration conflict), then try the url given below
-// const url = "mongodb://127.0.0.1:27017/ecomdb";
+const url = process.env.DB_URI;
+
+export const connectUsingMongoose = async () => {
+    try {
+        await mongoose.connect(url);
+        console.log(">> DB connected.")
+    } catch (error) {
+        console.log("DB connection error:", error);
+    }
+}
 
 let client;
 export const connectToMongoDB = ()=>{
-     MongoClient.connect(process.env.DB_URI)
+     MongoClient.connect("mongodb://localhost:27017/ecomdb?replicaSet=rs0")
         .then(clientInstance=>{
             client=clientInstance
             console.log("Mongodb is connected");
@@ -20,6 +32,10 @@ export const connectToMongoDB = ()=>{
 
 export const getDB = ()=>{
     return client.db();
+}
+
+export const getClient = ()=> {
+    return client;
 }
 
 const createCounter = async ()=>{

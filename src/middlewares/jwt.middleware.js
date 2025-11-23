@@ -16,6 +16,7 @@ const jwtAuth = (req, res, next)=>{
             token,
             process.env.JWT_SECRET
         );
+        console.log("JWT Payload:", payload.userID);
         req.userID = payload.userID;
         // console.log(payload);
     } catch(err){

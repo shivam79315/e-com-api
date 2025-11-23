@@ -15,4 +15,8 @@ orderRouter.post('/', (req, res)=>{
     orderController.placeOrder(req, res)
 });
 
+orderRouter.post('/totalAmount', (req, res)=>{
+    orderController.getTotalAMount(req, res)
+});
+
 export default orderRouter;

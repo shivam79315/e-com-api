@@ -5,7 +5,7 @@
         "description": "API for E-Commerce application",
         "title": "E-Com API"
     },
-    "host":"e-com-api-i9yc.onrender.com",
+    "host":"localhost:3200",
     "securityDefinitions":{
         "JWT":{
             "in":"header",
@@ -15,7 +15,8 @@
     },
     "tags": [
         { "name": "Users", "description": "Operations about users" },
-        { "name": "Products", "description": "Operations about products" }
+        { "name": "Products", "description": "Operations about products" },
+        { "name": "Orders", "description": "Operations related to orders" }
     ],
     "paths":{
         "/api/users/signup":{
@@ -137,7 +138,50 @@
                     "400": { "description": "Error fetching products" }
                 }
             }
+        },
+        "/api/orders": {
+            "post": {
+                "tags": ["Orders"],
+                "summary": "Place a new order",
+                "description": "Places an order for the logged-in user",
+                "security": [{ "JWT": {} }],
+                "responses": {
+                "201": {
+                    "description": "Order placed successfully"
+                },
+                "400": {
+                    "description": "Invalid request"
+                },
+                "500": {
+                    "description": "Failed to place order"
+                }
+                }
+            }
+        },
+        "/api/orders/totalAmount": {
+            "post": {
+                "tags": ["Orders"],
+                "summary": "Get total amount of user's order",
+                "description": "Returns the total payable amount for the logged-in user",
+                "security": [{ "JWT": {} }],
+                "responses": {
+                "200": {
+                    "description": "Order total amount",
+                    "schema": {
+                    "type": "object",
+                    "properties": {
+                        "totalAmount": { "type": "number" }
+                    }
+                    }
+                },
+                "400": {
+                    "description": "Invalid request"
+                },
+                "500": {
+                    "description": "Failed to get total amount"
+                }
+                }
+            }
         }
-
     }
 }
