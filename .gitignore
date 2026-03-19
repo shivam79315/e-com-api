@@ -32,9 +32,11 @@ coverage/
 Thumbs.db
 
 # IDE files
-.vscode/
 .idea/
 
 # Optional: ignore test data or uploads (if any)
 uploads/
 data/
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
